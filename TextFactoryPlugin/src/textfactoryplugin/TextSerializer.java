@@ -3,16 +3,28 @@ package textfactoryplugin;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import interfaces.IDocumentSerializer ;
 
 /**
  *
  * @author Yasmin
  */
-public class TextSerializer implements interfaces.IDocumentSerializer {
+public class TextSerializer implements IDocumentSerializer {
 
+    private TextSerializer(){
+        
+    }  
+    
+    public static TextSerializer getInstance(){
+        if(serializer == null)
+           serializer = new TextSerializer();
+
+        return serializer;
+    } 
+    
     @Override
     public void load() {
-          File[] file = null;
+        File[] file = null;
         JFileChooser fc = new JFileChooser(); 
         
         fc.setDialogTitle("Selecione o(s) arquivo(s)..."); 
@@ -76,4 +88,6 @@ public class TextSerializer implements interfaces.IDocumentSerializer {
             return;
     }
     
+    
+    private static TextSerializer serializer;
 }

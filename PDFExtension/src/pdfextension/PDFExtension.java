@@ -1,21 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pdfextension;
+
+import interfaces.ICore;
+import interfaces.IDocumentEditor;
+import interfaces.IDocumentFactory;
+import interfaces.IDocumentSerializer;
+import interfaces.IDocumentValidator;
+import interfaces.IPlugin;
 
 /**
  *
  * @author Yasmin
  */
-public class PDFExtension {
+public class PDFExtension implements IPlugin, IDocumentFactory{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    @Override
+    public boolean initialize(ICore core) {
+        return true;
+    }
+
+    @Override
+    public IDocumentEditor createDocumentEditor() {
+        return new PDFDocumentView();
+    }
+
+    @Override
+    public IDocumentValidator createDocumentValidator() {
+       return new PDFDocumentValidator();
+    }
+
+    @Override
+    public IDocumentSerializer createDocumentSerializer() {
+       return new PDFDocumentSerializer();
     }
     
 }

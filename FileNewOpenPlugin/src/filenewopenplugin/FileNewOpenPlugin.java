@@ -3,10 +3,13 @@ package filenewopenplugin;
 
 import interfaces.ICore;
 import interfaces.IDocumentFactory;
-import interfaces.IDocumentSerializer;
+//import interfaces.IDocumentEditor;
+//import interfaces.IDocumentFactory;
+//import interfaces.IDocumentSerializer;
 import interfaces.IPlugin;
 import interfaces.IUIController;
 import java.io.File;
+import textfactoryplugin.TextFactoryPlugin;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 
@@ -19,14 +22,15 @@ public class FileNewOpenPlugin implements IPlugin {
     @Override
     public boolean initialize(ICore core) {
         IUIController uiController = core.getUIController();
-
+        IDocumentFactory doc = new TextFactoryPlugin();
 //        IDocumentSerializer serializer = null;
            
         JMenuItem fileNewItem = uiController.addMenuItem("File", "New");
         fileNewItem.addActionListener((java.awt.event.ActionEvent evt) -> {
             System.out.println("Voce clicou no File->New");
-//            
-//            IDocumentFactory doc = null;
+
+        doc.createDocumentEditor().createDocument();
+//            IDocumentEditor createDocumentEditor = doc.createDocumentEditor();
 //            open();
 //                serializer.load();
 //            doc.getSupportedExtensions(file);
@@ -38,6 +42,7 @@ public class FileNewOpenPlugin implements IPlugin {
         JMenuItem fileOpenItem = uiController.addMenuItem("File", "Open");
         fileOpenItem.addActionListener((java.awt.event.ActionEvent evt) -> {
             System.out.println("Voce clicou no File->Open");
+            doc.createDocumentEditor().open();
 //            open();
             
 //            serializer.load();
@@ -46,6 +51,7 @@ public class FileNewOpenPlugin implements IPlugin {
         JMenuItem fileSaveItem = uiController.addMenuItem("File", "Save");
         fileSaveItem.addActionListener((java.awt.event.ActionEvent evt) -> {
             System.out.println("Voce clicou no File->Save");
+            doc.createDocumentSerializer().save();
 //            save();
             
 //            serializer.save();

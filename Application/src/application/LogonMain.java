@@ -1,7 +1,7 @@
 package application;
 
 import interfaces.ILogon;
-import logins.DemoFactoryMethod;
+import logins.Logins;
 /**
  *
  * @author Aluno
@@ -101,19 +101,19 @@ public class LogonMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFaceActionPerformed
-        instance(DemoFactoryMethod.create(jButtonFace.getText()));
+        instance(Logins.create(jButtonFace.getText()));
     }//GEN-LAST:event_jButtonFaceActionPerformed
 
     private void jButtonLinkedInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkedInActionPerformed
-        instance(DemoFactoryMethod.create(jButtonLinkedIn.getText()));
+        instance(Logins.create(jButtonLinkedIn.getText()));
     }//GEN-LAST:event_jButtonLinkedInActionPerformed
 
     private void jButtonGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGoogleActionPerformed
-        instance(DemoFactoryMethod.create(jButtonGoogle.getText()));
+        instance(Logins.create(jButtonGoogle.getText()));
     }//GEN-LAST:event_jButtonGoogleActionPerformed
 
     private void jButtonTwittActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTwittActionPerformed
-        instance(DemoFactoryMethod.create(jButtonTwitt.getText()));
+        instance(Logins.create(jButtonTwitt.getText()));
     }//GEN-LAST:event_jButtonTwittActionPerformed
 
     /**

@@ -12,5 +12,5 @@ public interface IDocumentFactory {
     public IDocumentEditor createDocumentEditor();
     public IDocumentValidator createDocumentValidator();
     public IDocumentSerializer createDocumentSerializer();
-    public String getSupportedExtensions(File file); // return "gif|png|jpg|txt";
+//    public String getSupportedExtensions(File file); // return "gif|png|jpg|txt";
 }

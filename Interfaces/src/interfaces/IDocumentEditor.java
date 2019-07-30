@@ -9,4 +9,5 @@ import java.io.File;
 public interface IDocumentEditor {
     public void open();
     File createDocument();
+    public void show(File file);
 }

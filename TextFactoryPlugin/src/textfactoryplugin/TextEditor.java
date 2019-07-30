@@ -8,7 +8,10 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import interfaces.IDocumentEditor;
+import java.awt.Desktop;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -31,14 +34,18 @@ public class TextEditor implements IDocumentEditor {
     public void open() {
         String line;
         
-        File[] fileLocal = null;
+        File fileLocal = null;
         JFileChooser fc = new JFileChooser(); 
         
         fc.setDialogTitle("Selecione o(s) arquivo(s)..."); 
         fc.setDialogType(JFileChooser.OPEN_DIALOG); 
         fc.setApproveButtonText("Abrir"); 
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY); 
+        
         //filter *.txt
+         FileFilter filter = new FileNameExtensionFilter ("Arquivos texto", "txt");  
+        fc.addChoosableFileFilter(filter);
+        
         fc.setAcceptAllFileFilterUsed(false);
         fc.setMultiSelectionEnabled(false); 
         int result = fc.showOpenDialog(fc); 
@@ -46,14 +53,14 @@ public class TextEditor implements IDocumentEditor {
         if (result == JFileChooser.CANCEL_OPTION)
             System.exit(1);
         
-         fileLocal = fc.getSelectedFiles(); 
+         fileLocal = fc.getSelectedFile(); 
          
-         for(File f : fileLocal) {
-             System.out.println("NOME: " + f.getName());
-             this.file = f;
-         }
+//         for(File f : fileLocal) {
+//             System.out.println("NOME: " + f.getName());
+//             this.file = f;
+//         }
+         show(fileLocal);
          
- 
         try{
             BufferedReader input = new BufferedReader(new FileReader(this.file.getName()));
             String linha;
@@ -88,6 +95,17 @@ public class TextEditor implements IDocumentEditor {
             }
             
             return file;
+    }
+    
+     @Override
+    public void show(File file){
+        try {
+            if (Desktop.isDesktopSupported())
+                Desktop.getDesktop().open(file);
+        } catch(Exception ex) {
+          ex.printStackTrace();
+          JOptionPane.showMessageDialog(null, "Erro no Desktop: " + ex);
+        }    
     }
     
     private static TextEditor editor;
